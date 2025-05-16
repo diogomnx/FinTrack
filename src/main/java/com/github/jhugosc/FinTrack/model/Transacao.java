@@ -1,5 +1,8 @@
 package com.github.jhugosc.FinTrack.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,16 +20,22 @@ public class Transacao {
     private String nome;
     private String descricao;
 
+    private BigDecimal valor;
+
+    private LocalDateTime dataHora;
+
     @Enumerated(EnumType.STRING)
     private Movimentacao movimentacao;
 
     public Transacao() {
     }
 
-    public Transacao(Long id, String nome, String descricao, Movimentacao movimentacao) {
+    public Transacao(Long id, String nome, String descricao, Movimentacao movimentacao, BigDecimal valor, LocalDateTime dataHora) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.valor = valor;
+        this.dataHora = dataHora;
         this.movimentacao = movimentacao;
     }
 
@@ -54,11 +63,27 @@ public class Transacao {
         this.descricao = descricao;
     }
 
-    public Movimentacao getmovimentacao() {
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
+    }
+
+    public Movimentacao getMovimentacao() {
         return movimentacao;
     }
 
-    public void setmovimentacao(Movimentacao movimentacao) {
+    public void setMovimentacao(Movimentacao movimentacao) {
         this.movimentacao = movimentacao;
     }
 }
